@@ -1,4 +1,4 @@
-﻿namespace HRDCD.Order.Database;
+﻿namespace HRDCD.Order.DataModel;
 
 using Configuration;
 using Microsoft.EntityFrameworkCore;
@@ -28,7 +28,7 @@ public class OrderDbContext : DbContext
     /// <summary>
     /// Возвращает или задает <see cref="DbSet{TEntity}"/> для работы с сущностями заказов <see cref="Order"/>.
     /// </summary>
-    public DbSet<DataModel.Entity.Order> Orders { get; set; }
+    public DbSet<DataModel.Entity.OrderEntity> Orders { get; set; }
 
     /// <inheritdoc/>
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

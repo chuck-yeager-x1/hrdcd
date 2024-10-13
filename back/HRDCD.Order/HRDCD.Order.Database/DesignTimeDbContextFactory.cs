@@ -1,5 +1,7 @@
 ﻿namespace HRDCD.Order.Database;
 
+using DataModel;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
@@ -17,7 +19,7 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<OrderDbCon
             .AddJsonFile(@Directory.GetCurrentDirectory() + "/../HRDCD.Order.Api/appsettings.json")
             .Build();
         var builder = new DbContextOptionsBuilder<OrderDbContext>();
-        builder.UseNpgsql(configuration.GetConnectionString("Database"));
+        builder.UseNpgsql(configuration.GetConnectionString("Database"), _ => _.MigrationsAssembly("HRDCD.Order.Database"));
 
         return new OrderDbContext(builder.Options);
     }

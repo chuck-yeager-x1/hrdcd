@@ -1,7 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDCD.Order.Api", "HRDCD.Order.Api\HRDCD.Order.Api.csproj", "{F5C35311-1858-42B9-818F-24AEE99085CB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDCD.Order.DataModel", "HRDCD.Order.DataModel\HRDCD.Order.DataModel.csproj", "{80E87233-39A9-48F4-8FCE-9EECD32AB53D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDCD.Order.Tasks", "HRDCD.Order.Tasks\HRDCD.Order.Tasks.csproj", "{B8DB8A8C-8388-4B31-A90A-0000DED4CFAC}"
@@ -14,16 +12,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{640BB3
 		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDCD.Order.Api", "HRDCD.Order.Api\HRDCD.Order.Api.csproj", "{79DFA10E-0565-4938-8095-A1A888501052}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDCD.Order.Faker", "HRDCD.Order.Faker\HRDCD.Order.Faker.csproj", "{F4CCE8E5-7899-4805-98AC-A88AB9209DBB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F5C35311-1858-42B9-818F-24AEE99085CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F5C35311-1858-42B9-818F-24AEE99085CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F5C35311-1858-42B9-818F-24AEE99085CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F5C35311-1858-42B9-818F-24AEE99085CB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{80E87233-39A9-48F4-8FCE-9EECD32AB53D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{80E87233-39A9-48F4-8FCE-9EECD32AB53D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80E87233-39A9-48F4-8FCE-9EECD32AB53D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -36,5 +34,13 @@ Global
 		{10F15A39-71F9-493C-975B-8C6478DA6E82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10F15A39-71F9-493C-975B-8C6478DA6E82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10F15A39-71F9-493C-975B-8C6478DA6E82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79DFA10E-0565-4938-8095-A1A888501052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79DFA10E-0565-4938-8095-A1A888501052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79DFA10E-0565-4938-8095-A1A888501052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79DFA10E-0565-4938-8095-A1A888501052}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4CCE8E5-7899-4805-98AC-A88AB9209DBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4CCE8E5-7899-4805-98AC-A88AB9209DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4CCE8E5-7899-4805-98AC-A88AB9209DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4CCE8E5-7899-4805-98AC-A88AB9209DBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

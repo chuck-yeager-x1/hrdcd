@@ -3,7 +3,7 @@
 /// <summary>
 /// Класс для сущности "Заказ", сохраняемой в БД.
 /// </summary>
-public class Order : BaseEntity
+public class OrderEntity : BaseEntity
 {
     /// <summary>
     /// Возвращает или задает номер заказа.

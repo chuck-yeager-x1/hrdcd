@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\HRDCD.Order.DataModel\HRDCD.Order.DataModel.csproj" />
+    </ItemGroup>
+
 </Project>
