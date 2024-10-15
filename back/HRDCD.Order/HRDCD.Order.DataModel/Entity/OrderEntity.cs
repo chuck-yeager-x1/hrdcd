@@ -1,4 +1,6 @@
-﻿namespace HRDCD.Order.DataModel.Entity;
+﻿using HRDCD.Common.DataModel.Entity;
+
+namespace HRDCD.Order.DataModel.Entity;
 
 /// <summary>
 /// Класс для сущности "Заказ", сохраняемой в БД.

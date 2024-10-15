@@ -1,9 +1,5 @@
-﻿namespace HRDCD.Order.DataModel.Entity;
+﻿namespace HRDCD.Common.DataModel.Entity;
 
-/// <summary>
-/// Базовый класс для сущностей, хранимых в БД.
-/// Содержит в себе поля, обязательные для всех сущностей.
-/// </summary>
 public class BaseEntity
 {
     /// <summary>

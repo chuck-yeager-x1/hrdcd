@@ -1,4 +1,5 @@
-﻿using HRDCD.Order.Tasks.Handlers;
+﻿using HRDCD.Common.Tasks.Handlers;
+using HRDCD.Order.Tasks.Handlers;
 
 namespace HRDCD.Order.Tasks.DTO.Order;
 

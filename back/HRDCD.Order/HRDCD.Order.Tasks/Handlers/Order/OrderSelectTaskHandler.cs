@@ -1,4 +1,5 @@
-﻿using HRDCD.Order.DataModel;
+﻿using HRDCD.Common.Tasks.Handlers;
+using HRDCD.Order.DataModel;
 using HRDCD.Order.Tasks.DTO.Order;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,8 @@ public class OrderSelectTaskHandler : ITaskHandler<OrderSelectParam, OrderSelect
 
         var orders = _orderDbContext.Set<DataModel.Entity.OrderEntity>()
             .Where(_ => _.IsDeleted == false);
+        
+        var total = await orders.CountAsync(cancellationToken);
 
         var ordersPaged = await orders
             .Skip(startIndex)
@@ -32,8 +35,6 @@ public class OrderSelectTaskHandler : ITaskHandler<OrderSelectParam, OrderSelect
                 OrderName = _.OrderName,
                 OrderDescription = _.OrderDescription,
             }).ToListAsync(cancellationToken);
-
-        var total = await orders.CountAsync(cancellationToken);
 
         return new OrderSelectTaskMultipleResult
         {

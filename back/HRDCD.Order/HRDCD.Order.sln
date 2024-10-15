@@ -16,6 +16,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDCD.Order.Api", "HRDCD.Or
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDCD.Order.Faker", "HRDCD.Order.Faker\HRDCD.Order.Faker.csproj", "{F4CCE8E5-7899-4805-98AC-A88AB9209DBB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDCD.Common.Tasks", "..\HRDCD.Common\HRDCD.Common.Tasks\HRDCD.Common.Tasks.csproj", "{852C8FFF-D1A1-47A7-ACB3-BB8012F9EBA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDCD.Common.DataModel", "..\HRDCD.Common\HRDCD.Common.DataModel\HRDCD.Common.DataModel.csproj", "{7AD98138-6ACE-4486-B770-93D9E7EA02B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +46,17 @@ Global
 		{F4CCE8E5-7899-4805-98AC-A88AB9209DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4CCE8E5-7899-4805-98AC-A88AB9209DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4CCE8E5-7899-4805-98AC-A88AB9209DBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{852C8FFF-D1A1-47A7-ACB3-BB8012F9EBA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{852C8FFF-D1A1-47A7-ACB3-BB8012F9EBA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{852C8FFF-D1A1-47A7-ACB3-BB8012F9EBA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{852C8FFF-D1A1-47A7-ACB3-BB8012F9EBA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AD98138-6ACE-4486-B770-93D9E7EA02B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AD98138-6ACE-4486-B770-93D9E7EA02B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AD98138-6ACE-4486-B770-93D9E7EA02B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AD98138-6ACE-4486-B770-93D9E7EA02B8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{852C8FFF-D1A1-47A7-ACB3-BB8012F9EBA4} = {640BB385-772E-46E6-8B6C-E077389748C8}
+		{7AD98138-6ACE-4486-B770-93D9E7EA02B8} = {640BB385-772E-46E6-8B6C-E077389748C8}
 	EndGlobalSection
 EndGlobal

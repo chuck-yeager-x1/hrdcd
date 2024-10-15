@@ -9,7 +9,9 @@ using Microsoft.Extensions.Configuration;
 /// <summary>
 /// Вспомогательный класс для манипуляций с моделью данных при разработке.
 /// </summary>
+// ReSharper disable UnusedType.Global
 public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<OrderDbContext>
+// ReSharper restore UnusedType.Global
 {
     /// <inheritdoc/>
     public OrderDbContext CreateDbContext(string[] args)

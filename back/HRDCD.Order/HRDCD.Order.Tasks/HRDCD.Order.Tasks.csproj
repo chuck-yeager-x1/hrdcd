@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\HRDCD.Common\HRDCD.Common.Tasks\HRDCD.Common.Tasks.csproj" />
       <ProjectReference Include="..\HRDCD.Order.DataModel\HRDCD.Order.DataModel.csproj" />
     </ItemGroup>
 

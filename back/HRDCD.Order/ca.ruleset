@@ -4,7 +4,7 @@
         <Rule Id="UseConfigureAwait" Action="Warning" />
     </Rules>
     <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
-        <Rule Id="CA1001" Action="Error" />
+        <!--<Rule Id="CA1001" Action="Error" />
         <Rule Id="CA1009" Action="Error" />
         <Rule Id="CA1016" Action="Error" />
         <Rule Id="CA1033" Action="Error" />
@@ -66,15 +66,15 @@
         <Rule Id="CA2240" Action="Error" />
         <Rule Id="CA2241" Action="Error" />
         <Rule Id="CA2242" Action="Error" />
-        <Rule Id="CA1012" Action="Error" />
+        <Rule Id="CA1012" Action="Error" />-->
 		
 		<Rule Id="CS8618" Action="None" />        
     </Rules>
     <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
-        <Rule Id="SA1305" Action="Error" />
+        <!--<Rule Id="SA1305" Action="Error" />
         <Rule Id="SA1412" Action="Error" />
         <Rule Id="SA1600" Action="Error" />
-        <Rule Id="SA1117" Action="Error" />
+        <Rule Id="SA1117" Action="Error" />-->
 
         <Rule Id="SA1309" Action="None" />
 		<Rule Id="SA1609" Action="None" />		

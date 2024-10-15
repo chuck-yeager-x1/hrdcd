@@ -1,4 +1,4 @@
-namespace HRDCD.Order.Tasks.DTO;
+namespace HRDCD.Common.Tasks.DTO;
 
 /// <summary>
 /// Класс для представления параметров, необходимых при запросе постраничного просмотра списка.

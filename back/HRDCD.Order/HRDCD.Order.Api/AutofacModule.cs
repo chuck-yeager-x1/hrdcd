@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using HRDCD.Common.Tasks.Handlers;
 using HRDCD.Order.Tasks.DTO.Order;
 using HRDCD.Order.Tasks.Handlers;
 using HRDCD.Order.Tasks.Handlers.Order;

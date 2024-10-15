@@ -14,6 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\HRDCD.Common\HRDCD.Common.Tasks\HRDCD.Common.Tasks.csproj" />
       <ProjectReference Include="..\HRDCD.Order.Tasks\HRDCD.Order.Tasks.csproj" />
     </ItemGroup>
 

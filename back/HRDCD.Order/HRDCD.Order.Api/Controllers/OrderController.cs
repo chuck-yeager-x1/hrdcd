@@ -1,4 +1,5 @@
 ﻿using System.Net.Mime;
+using HRDCD.Common.Tasks.Handlers;
 using HRDCD.Order.Tasks.DTO.Order;
 using HRDCD.Order.Tasks.Handlers;
 
@@ -28,9 +29,6 @@ public class OrderController : ControllerBase
     [Consumes(MediaTypeNames.Application.Json)]
     [Produces(MediaTypeNames.Application.Json)]
     [ProducesResponseType(typeof(OrderCreateTaskResult), StatusCodes.Status201Created)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [Route("create")]
     public async Task<OrderCreateTaskResult> CreateOrderAsync(OrderCreateParam orderCreateParam,
         CancellationToken cancellationToken)

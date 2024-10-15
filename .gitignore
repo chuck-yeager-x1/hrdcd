@@ -9,3 +9,17 @@
 /back/HRDCD.Order/.idea
 /back/HRDCD.Order/HRDCD.Order.Faker/obj
 /back/HRDCD.Order/HRDCD.Order.Faker/bin
+/back/HRDCD.Common/HRDCD.Common.DataModel/obj
+/back/HRDCD.Common/HRDCD.Common.DataModel/bin
+/back/HRDCD.Common/HRDCD.Common.Tasks/obj
+/back/HRDCD.Common/HRDCD.Common.Tasks/bin
+/back/HRDCD.Delivery/HRDCD.Delivery.Api/obj
+/back/HRDCD.Delivery/HRDCD.Delivery.Api/bin
+/back/HRDCD.Delivery/HRDCD.Delivery.Database/obj
+/back/HRDCD.Delivery/HRDCD.Delivery.Database/bin
+/back/HRDCD.Delivery/HRDCD.Delivery.DataModel/obj
+/back/HRDCD.Delivery/HRDCD.Delivery.DataModel/bin
+/back/HRDCD.Delivery/HRDCD.Delivery.Tasks/obj
+/back/HRDCD.Delivery/HRDCD.Delivery.Tasks/bin
+/back/HRDCD.Delivery/.idea
+/back/HRDCD.Common/.idea

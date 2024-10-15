@@ -1,4 +1,4 @@
-﻿namespace HRDCD.Order.Tasks.Handlers;
+﻿namespace HRDCD.Common.Tasks.Handlers;
 
 public abstract class TaskSingleResult<TResultEntity> : TaskBaseResult
 {

@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDCD.Delivery.DataModel", "HRDCD.Delivery.DataModel\HRDCD.Delivery.DataModel.csproj", "{3C2C3887-66E3-4D17-BF58-896A3CF7B8D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDCD.Delivery.Api", "HRDCD.Delivery.Api\HRDCD.Delivery.Api.csproj", "{6727C3E4-D5DE-4035-A050-EC6AAEA00DF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDCD.Delivery.Tasks", "HRDCD.Delivery.Tasks\HRDCD.Delivery.Tasks.csproj", "{31E1A1A8-5B03-4758-8F35-51E8EF50F1EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{6F95D2BA-2AD4-4417-8CB0-CBC2D6377FA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDCD.Delivery.Database", "HRDCD.Delivery.Database\HRDCD.Delivery.Database.csproj", "{74242A3D-D726-4C3D-9913-B187BFED0F9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDCD.Common.Tasks", "..\HRDCD.Common\HRDCD.Common.Tasks\HRDCD.Common.Tasks.csproj", "{8541FF45-8B36-4979-ADE5-77326E5A7756}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDCD.Common.DataModel", "..\HRDCD.Common\HRDCD.Common.DataModel\HRDCD.Common.DataModel.csproj", "{0740D8EE-B5DD-40B5-8DF0-111861F71788}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C2C3887-66E3-4D17-BF58-896A3CF7B8D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C2C3887-66E3-4D17-BF58-896A3CF7B8D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C2C3887-66E3-4D17-BF58-896A3CF7B8D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C2C3887-66E3-4D17-BF58-896A3CF7B8D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6727C3E4-D5DE-4035-A050-EC6AAEA00DF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6727C3E4-D5DE-4035-A050-EC6AAEA00DF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6727C3E4-D5DE-4035-A050-EC6AAEA00DF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6727C3E4-D5DE-4035-A050-EC6AAEA00DF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31E1A1A8-5B03-4758-8F35-51E8EF50F1EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31E1A1A8-5B03-4758-8F35-51E8EF50F1EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31E1A1A8-5B03-4758-8F35-51E8EF50F1EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31E1A1A8-5B03-4758-8F35-51E8EF50F1EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74242A3D-D726-4C3D-9913-B187BFED0F9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74242A3D-D726-4C3D-9913-B187BFED0F9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74242A3D-D726-4C3D-9913-B187BFED0F9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74242A3D-D726-4C3D-9913-B187BFED0F9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8541FF45-8B36-4979-ADE5-77326E5A7756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8541FF45-8B36-4979-ADE5-77326E5A7756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8541FF45-8B36-4979-ADE5-77326E5A7756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8541FF45-8B36-4979-ADE5-77326E5A7756}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0740D8EE-B5DD-40B5-8DF0-111861F71788}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0740D8EE-B5DD-40B5-8DF0-111861F71788}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0740D8EE-B5DD-40B5-8DF0-111861F71788}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0740D8EE-B5DD-40B5-8DF0-111861F71788}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8541FF45-8B36-4979-ADE5-77326E5A7756} = {6F95D2BA-2AD4-4417-8CB0-CBC2D6377FA9}
+		{0740D8EE-B5DD-40B5-8DF0-111861F71788} = {6F95D2BA-2AD4-4417-8CB0-CBC2D6377FA9}
+	EndGlobalSection
+EndGlobal
