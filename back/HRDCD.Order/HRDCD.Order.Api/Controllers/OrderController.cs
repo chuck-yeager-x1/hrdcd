@@ -1,7 +1,6 @@
 ﻿using System.Net.Mime;
 using HRDCD.Common.Tasks.Handlers;
 using HRDCD.Order.Tasks.DTO.Order;
-using HRDCD.Order.Tasks.Handlers;
 
 namespace HRDCD.Order.Api.Controllers;
 

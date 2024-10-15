@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDCD.Common.Tasks", "..\HR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDCD.Common.DataModel", "..\HRDCD.Common\HRDCD.Common.DataModel\HRDCD.Common.DataModel.csproj", "{0740D8EE-B5DD-40B5-8DF0-111861F71788}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDCD.Delivery.Consumer", "HRDCD.Delivery.Consumer\HRDCD.Delivery.Consumer.csproj", "{4E97972C-9043-48AB-9133-D6484A3D75B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{0740D8EE-B5DD-40B5-8DF0-111861F71788}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0740D8EE-B5DD-40B5-8DF0-111861F71788}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0740D8EE-B5DD-40B5-8DF0-111861F71788}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E97972C-9043-48AB-9133-D6484A3D75B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E97972C-9043-48AB-9133-D6484A3D75B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E97972C-9043-48AB-9133-D6484A3D75B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E97972C-9043-48AB-9133-D6484A3D75B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8541FF45-8B36-4979-ADE5-77326E5A7756} = {6F95D2BA-2AD4-4417-8CB0-CBC2D6377FA9}

@@ -2,11 +2,12 @@
 using HRDCD.Delivery.DataModel;
 using HRDCD.Delivery.DataModel.Entity;
 using HRDCD.Delivery.Tasks.DTO.Delivery;
+using HRDCD.Delivery.Tasks.DTO.Order;
 using Microsoft.EntityFrameworkCore;
 
 namespace HRDCD.Delivery.Tasks.Handlers.Order;
 
-public class OrderStartDeliveryTaskHandler : ITaskHandler<int, DeliverySelectTaskResult>
+public class OrderStartDeliveryTaskHandler : ITaskHandler<long, DeliveryStartTaskResult>
 {
     private readonly DeliveryDbContext _deliveryDbContext;
 
@@ -15,11 +16,21 @@ public class OrderStartDeliveryTaskHandler : ITaskHandler<int, DeliverySelectTas
         _deliveryDbContext = deliveryDbContext ?? throw new ArgumentNullException(nameof(deliveryDbContext));
     }
 
-    public async Task<DeliverySelectTaskResult> HandleTaskAsync(int argument, CancellationToken cancellationToken)
+    public async Task<DeliveryStartTaskResult> HandleTaskAsync(long argument, CancellationToken cancellationToken)
     {
         var order = await _deliveryDbContext.Set<OrderEntity>()
+            .Include(_ => _.DeliveryEntities)
             .Where(_ => _.IsDeleted == false)
             .SingleOrDefaultAsync(_ => _.Id == argument, cancellationToken);
+
+        if (order.DeliveryEntities.Any())
+        {
+            return new DeliveryStartTaskResult
+            {
+                IsSuccess = false,
+                Message = "По данному заказу уже начата процедура доставки"
+            };
+        }
 
         var delivery = new DeliveryEntity
         {
@@ -34,15 +45,22 @@ public class OrderStartDeliveryTaskHandler : ITaskHandler<int, DeliverySelectTas
         await _deliveryDbContext.Set<DeliveryEntity>().AddAsync(delivery, cancellationToken);
         await _deliveryDbContext.SaveChangesAsync(cancellationToken);
 
-        return new DeliverySelectTaskResult
+        return new DeliveryStartTaskResult
         {
             IsSuccess = true,
-            Result = new DeliveryResultValue
+            Delivery = new DeliveryResultValue
             {
                 DeliveryStatus = delivery.DeliveryStatus,
                 OrderNumber = delivery.OrderEntity.OrderNumber,
                 OrderName = delivery.OrderEntity.OrderName,
                 Id = delivery.Id,
+            },
+            Order = new OrderResultValue
+            {
+                Id = order.Id,
+                OrderNumber = order.OrderNumber,
+                OrderName = order.OrderName,
+                OrderDescription = order.OrderDescription
             }
         };
     }

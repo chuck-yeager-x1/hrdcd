@@ -23,3 +23,7 @@
 /back/HRDCD.Delivery/HRDCD.Delivery.Tasks/bin
 /back/HRDCD.Delivery/.idea
 /back/HRDCD.Common/.idea
+/back/HRDCD.Delivery/HRDCD.Delivery.Consumer/obj
+/back/HRDCD.Delivery/HRDCD.Delivery.Consumer/bin
+/back/HRDCD.Order/HRDCD.Order.Sender/obj
+/back/HRDCD.Order/HRDCD.Order.Sender/bin

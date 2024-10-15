@@ -24,6 +24,7 @@ public class OrderCreateTaskHandler : ITaskHandler<OrderCreateParam, OrderCreate
             UpdateDate = DateTime.UtcNow,
             DeleteDate = DateTime.UtcNow,
             IsDeleted = false,
+            IsSent = false
         };
 
         await _orderDbContext.Set<DataModel.Entity.OrderEntity>().AddAsync(order, cancellationToken);
@@ -33,8 +34,11 @@ public class OrderCreateTaskHandler : ITaskHandler<OrderCreateParam, OrderCreate
         {
             Result = new OrderResultValue
             {
-                Id = order.Id, OrderName = order.OrderName, OrderNumber = order.OrderNumber,
-                OrderDescription = order.OrderDescription
+                Id = order.Id, 
+                OrderName = order.OrderName, 
+                OrderNumber = order.OrderNumber,
+                OrderDescription = order.OrderDescription,
+                IsSent = order.IsSent
             }
         };
 

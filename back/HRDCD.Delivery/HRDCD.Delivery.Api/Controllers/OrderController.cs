@@ -9,14 +9,14 @@ namespace HRDCD.Delivery.Api.Controllers;
 [Route("api/[controller]")]
 public class OrderController : ControllerBase
 {
-    private readonly ITaskHandler<int, OrderSelectTaskResult> _orderSelectSigleTaskHandler;
+    private readonly ITaskHandler<long, OrderSelectTaskResult> _orderSelectSigleTaskHandler;
     private readonly ITaskHandler<OrderSelectParam, OrderSelectTaskMultipleResult> _orderSelectMultipleTaskHandler;
-    private readonly ITaskHandler<int, DeliverySelectTaskResult> _orderStartDeliveryTaskHandler;
+    private readonly ITaskHandler<long, DeliveryStartTaskResult> _orderStartDeliveryTaskHandler;
 
     public OrderController(
-        ITaskHandler<int, OrderSelectTaskResult> orderSelectSigleTaskHandler, 
+        ITaskHandler<long, OrderSelectTaskResult> orderSelectSigleTaskHandler, 
         ITaskHandler<OrderSelectParam, OrderSelectTaskMultipleResult> orderSelectMultipleTaskHandler, 
-        ITaskHandler<int, DeliverySelectTaskResult> orderStartDeliveryTaskHandler)
+        ITaskHandler<long, DeliveryStartTaskResult> orderStartDeliveryTaskHandler)
     {
         _orderSelectSigleTaskHandler = orderSelectSigleTaskHandler;
         _orderSelectMultipleTaskHandler = orderSelectMultipleTaskHandler;
@@ -40,8 +40,8 @@ public class OrderController : ControllerBase
     }
 
     [HttpPost]
-    [Route("create")]
-    public async Task<DeliverySelectTaskResult> CreateDeliveryAsync(int orderId, CancellationToken cancellationToken)
+    [Route("create-delivery")]
+    public async Task<DeliveryStartTaskResult> CreateDeliveryAsync(int orderId, CancellationToken cancellationToken)
     {
         return await _orderStartDeliveryTaskHandler.HandleTaskAsync(orderId, cancellationToken);
     }

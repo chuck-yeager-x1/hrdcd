@@ -20,11 +20,12 @@ class Program
         var testOrders = new Bogus.Faker<OrderEntity>("ru")
             .RuleFor(_ => _.OrderName, f => f.Commerce.ProductName())
             .RuleFor(_ => _.OrderNumber, f => f.Commerce.Ean13())
-            .RuleFor(_ => _.OrderDescription, f => f.Lorem.Sentences(10))
+            .RuleFor(_ => _.OrderDescription, f => f.Lorem.Sentences(20))
             .RuleFor(_ => _.InsertDate, DateTime.UtcNow)
             .RuleFor(_ => _.UpdateDate, DateTime.UtcNow)
             .RuleFor(_ => _.DeleteDate, DateTime.UtcNow)
-            .RuleFor(_ => _.IsDeleted, false);
+            .RuleFor(_ => _.IsDeleted, false)
+            .RuleFor(_ => _.IsSent, false);
             
         var orders = testOrders.Generate(1000);
         db.Set<OrderEntity>().AddRange(orders);

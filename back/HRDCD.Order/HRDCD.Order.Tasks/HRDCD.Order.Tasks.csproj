@@ -11,4 +11,9 @@
       <ProjectReference Include="..\HRDCD.Order.DataModel\HRDCD.Order.DataModel.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="MassTransit" Version="8.2.5" />
+      <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.5" />
+    </ItemGroup>
+
 </Project>

@@ -5,28 +5,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HRDCD.Order.Tasks.Handlers.Order;
 
-public class OrderSelectTaskHandler : ITaskHandler<OrderSelectParam, OrderSelectTaskMultipleResult>
+public class OrderSelectFirstUnsentTaskHandler : ITaskHandler<int, OrderSelectUnsentTaskResult>
 {
     private readonly OrderDbContext _orderDbContext;
 
-    public OrderSelectTaskHandler(OrderDbContext orderDbContext)
+    public OrderSelectFirstUnsentTaskHandler(OrderDbContext orderDbContext)
     {
         _orderDbContext = orderDbContext ?? throw new ArgumentNullException(nameof(orderDbContext));
     }
 
-    public async Task<OrderSelectTaskMultipleResult> HandleTaskAsync(OrderSelectParam argument,
-        CancellationToken cancellationToken)
+    public async Task<OrderSelectUnsentTaskResult> HandleTaskAsync(int argument, CancellationToken cancellationToken)
     {
-        var startIndex = (argument.PageNumber - 1) * argument.PageSize;
-
         var orders = _orderDbContext.Set<DataModel.Entity.OrderEntity>()
-            .Where(_ => _.IsDeleted == false);
-        
-        var total = await orders.CountAsync(cancellationToken);
+            .Where(_ => _.IsDeleted == false && _.IsSent == false);
 
         var ordersPaged = await orders
-            .Skip(startIndex)
-            .Take(argument.PageSize)
+            .Take(argument)
             .Select(_ => new OrderResultValue
             {
                 Id = _.Id,
@@ -36,14 +30,9 @@ public class OrderSelectTaskHandler : ITaskHandler<OrderSelectParam, OrderSelect
                 IsSent = _.IsSent,
             }).ToListAsync(cancellationToken);
 
-        return new OrderSelectTaskMultipleResult
+        return new OrderSelectUnsentTaskResult
         {
-            Results = ordersPaged,
-            PageNumber = argument.PageNumber,
-            PageSize = argument.PageSize,
-            Total = total,
-            ErrorMessage = "",
-            IsSuccess = true
+            Results = ordersPaged
         };
     }
 }

@@ -1,6 +1,6 @@
-﻿using HRDCD.Common.DataModel.Entity;
+﻿namespace HRDCD.Order.DataModel.Entity;
 
-namespace HRDCD.Order.DataModel.Entity;
+using HRDCD.Common.DataModel.Entity;
 
 /// <summary>
 /// Класс для сущности "Заказ", сохраняемой в БД.
@@ -21,4 +21,6 @@ public class OrderEntity : BaseEntity
     /// Возвращает или задает описание заказа.
     /// </summary>
     public string OrderDescription { get; set; }
+
+    public bool IsSent {get; set;}
 }

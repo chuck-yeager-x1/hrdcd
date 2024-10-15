@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HRDCD.Delivery.Tasks.Handlers.Order;
 
-public class OrderSelectSingleTaskHandler : ITaskHandler<int, OrderSelectTaskResult>
+public class OrderSelectSingleTaskHandler : ITaskHandler<long, OrderSelectTaskResult>
 {
     private readonly DeliveryDbContext _deliveryDbContext;
 
@@ -15,7 +15,7 @@ public class OrderSelectSingleTaskHandler : ITaskHandler<int, OrderSelectTaskRes
         _deliveryDbContext = deliveryDbContext ?? throw new ArgumentNullException(nameof(deliveryDbContext));
     }
 
-    public async Task<OrderSelectTaskResult> HandleTaskAsync(int argument, CancellationToken cancellationToken)
+    public async Task<OrderSelectTaskResult> HandleTaskAsync(long argument, CancellationToken cancellationToken)
     {
         var order = await _deliveryDbContext.Set<OrderEntity>()
             .Where(_ => _.IsDeleted == false)

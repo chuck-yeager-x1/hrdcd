@@ -12,18 +12,21 @@ public class AutofacModule : Module
     protected override void Load(ContainerBuilder builder)
     {
         builder.RegisterType<DeliverySelectSingleTaskHandler>()
-            .As<ITaskHandler<int, DeliverySelectTaskResult>>();
+            .As<ITaskHandler<long, DeliverySelectTaskResult>>();
         
         builder.RegisterType<DeliverySelectTaskHandler>()
             .As<ITaskHandler<DeliverySelectParam, DeliverySelectTaskMultipleResult>>();
         
         builder.RegisterType<OrderSelectSingleTaskHandler>()
-            .As<ITaskHandler<int, OrderSelectTaskResult>>();
+            .As<ITaskHandler<long, OrderSelectTaskResult>>();
         
         builder.RegisterType<OrderSelectTaskHandler>()
             .As<ITaskHandler<OrderSelectParam, OrderSelectTaskMultipleResult>>();
 
         builder.RegisterType<OrderStartDeliveryTaskHandler>()
-            .As<ITaskHandler<int, DeliverySelectTaskResult>>();
+            .As<ITaskHandler<long, DeliveryStartTaskResult>>();
+
+        builder.RegisterType<DeliveryChangeStatusTaskHandler>()
+            .As<ITaskHandler<DeliveryChangeStatusParam, DeliverySelectTaskResult>>();
     }
 }

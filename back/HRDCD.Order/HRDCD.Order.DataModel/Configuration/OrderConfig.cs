@@ -28,9 +28,14 @@ public class OrderConfig : IEntityTypeConfiguration<DataModel.Entity.OrderEntity
             .IsRequired();
         
         builder.Property(_ => _.IsDeleted).HasColumnName("is_del")
+            .HasDefaultValue(null)
             .IsRequired();
         
         builder.Property(_ => _.OrderNumber).HasColumnName("order_num")
+            .IsRequired();
+        
+        builder.Property(_ => _.IsSent).HasColumnName("is_sent")
+            .HasDefaultValue(null)
             .IsRequired();
         
         builder.Property(_ => _.OrderName).HasColumnName("order_name")
