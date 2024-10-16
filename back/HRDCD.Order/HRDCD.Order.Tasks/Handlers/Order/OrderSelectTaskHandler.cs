@@ -1,10 +1,13 @@
-﻿using HRDCD.Common.Tasks.Handlers;
-using HRDCD.Order.DataModel;
+﻿namespace HRDCD.Order.Tasks.Handlers.Order;
+
+using HRDCD.Common.Tasks.Handlers;
+using DataModel;
 using HRDCD.Order.Tasks.DTO.Order;
 using Microsoft.EntityFrameworkCore;
 
-namespace HRDCD.Order.Tasks.Handlers.Order;
-
+/// <summary>
+/// Обработчик задач по получению списка заказов в постраничном режиме.
+/// </summary>
 public class OrderSelectTaskHandler : ITaskHandler<OrderSelectParam, OrderSelectTaskMultipleResult>
 {
     private readonly OrderDbContext _orderDbContext;
@@ -14,6 +17,12 @@ public class OrderSelectTaskHandler : ITaskHandler<OrderSelectParam, OrderSelect
         _orderDbContext = orderDbContext ?? throw new ArgumentNullException(nameof(orderDbContext));
     }
 
+    /// <summary>
+    /// Метод для получения списка заказов в постраничном режиме.
+    /// </summary>
+    /// <param name="argument">Входящий аргумент с параметрами постраничной выборки.</param>
+    /// <param name="cancellationToken">Запрос на отмену операции.</param>
+    /// <returns>Объект, содержащий асинхронную операцию.</returns>
     public async Task<OrderSelectTaskMultipleResult> HandleTaskAsync(OrderSelectParam argument,
         CancellationToken cancellationToken)
     {
@@ -21,7 +30,7 @@ public class OrderSelectTaskHandler : ITaskHandler<OrderSelectParam, OrderSelect
 
         var orders = _orderDbContext.Set<DataModel.Entity.OrderEntity>()
             .Where(_ => _.IsDeleted == false);
-        
+
         var total = await orders.CountAsync(cancellationToken);
 
         var ordersPaged = await orders
@@ -42,7 +51,6 @@ public class OrderSelectTaskHandler : ITaskHandler<OrderSelectParam, OrderSelect
             PageNumber = argument.PageNumber,
             PageSize = argument.PageSize,
             Total = total,
-            ErrorMessage = "",
             IsSuccess = true
         };
     }

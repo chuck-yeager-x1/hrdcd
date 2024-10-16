@@ -4,12 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 /// <summary>
-/// Класс для конфигурации сущности "Заказ" (<see cref="Order"/>).
+/// Класс для конфигурации сущности <see cref="Order"/>.
 /// </summary>
-public class OrderConfig : IEntityTypeConfiguration<DataModel.Entity.OrderEntity>
+public class OrderConfig : IEntityTypeConfiguration<Entity.OrderEntity>
 {
-    /// <inheritdoc/>
-    public void Configure(EntityTypeBuilder<DataModel.Entity.OrderEntity> builder)
+    public void Configure(EntityTypeBuilder<Entity.OrderEntity> builder)
     {
         builder.ToTable("order");
         

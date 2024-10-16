@@ -22,5 +22,8 @@ public class OrderEntity : BaseEntity
     /// </summary>
     public string OrderDescription { get; set; }
 
+    /// <summary>
+    /// Возвращает или задает признак (не)отправки данных о заказе в очередь сообщений.
+    /// </summary>
     public bool IsSent {get; set;}
 }

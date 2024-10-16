@@ -1,7 +1,6 @@
-﻿using HRDCD.Delivery.DataModel;
+﻿namespace HRDCD.Delivery.Database;
 
-namespace HRDCD.Delivery.Database;
-
+using DataModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
@@ -13,7 +12,6 @@ using Microsoft.Extensions.Configuration;
 public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<DeliveryDbContext>
 // ReSharper restore UnusedType.Global
 {
-    /// <inheritdoc/>
     public DeliveryDbContext CreateDbContext(string[] args)
     {
         var configuration = new ConfigurationBuilder()
@@ -21,7 +19,8 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<DeliveryDb
             .AddJsonFile(@Directory.GetCurrentDirectory() + "/../HRDCD.Delivery.Api/appsettings.json")
             .Build();
         var builder = new DbContextOptionsBuilder<DeliveryDbContext>();
-        builder.UseNpgsql(configuration.GetConnectionString("Database"), _ => _.MigrationsAssembly("HRDCD.Delivery.Database"));
+        builder.UseNpgsql(configuration.GetConnectionString("Database"),
+            _ => _.MigrationsAssembly("HRDCD.Delivery.Database"));
 
         return new DeliveryDbContext(builder.Options);
     }

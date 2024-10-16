@@ -11,7 +11,7 @@ public class SelectParamBase
     public int PageSize { get; set; }
     
     /// <summary>
-    /// Возвращает или задает номер страницы в постраничном просмотре списка.
+    /// Возвращает или задает номер страницы в постраничном просмотре списка (начиная с 1).
     /// </summary>
     public int PageNumber { get; set; }
 }

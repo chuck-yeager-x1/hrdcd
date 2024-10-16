@@ -4,6 +4,9 @@ using HRDCD.Delivery.Tasks.DTO.Order;
 
 namespace HRDCD.Delivery.Tasks.Handlers.Order;
 
+/// <summary>
+/// Обработчик задач по созданию заказа и сохранению его в БД.
+/// </summary>
 public class OrderCreateTaskHandler  : ITaskHandler<OrderCreateParam, OrderSelectTaskResult>
 {
     private readonly DeliveryDbContext _deliveryDbContext;
@@ -13,6 +16,12 @@ public class OrderCreateTaskHandler  : ITaskHandler<OrderCreateParam, OrderSelec
         _deliveryDbContext = deliveryDbContext ?? throw new ArgumentNullException(nameof(deliveryDbContext));
     }
 
+    /// <summary>
+    /// Метод для создания заказа и сохранения его в БД.
+    /// </summary>
+    /// <param name="argument">Входящий аргумент с данными для формирования заказа.</param>
+    /// <param name="cancellationToken">Запрос на отмену операции.</param>
+    /// <returns>Объект, содержащий асинхронную оперцаию.</returns>
     public async Task<OrderSelectTaskResult> HandleTaskAsync(OrderCreateParam argument, CancellationToken cancellationToken)
     {
         var order = new DataModel.Entity.OrderEntity

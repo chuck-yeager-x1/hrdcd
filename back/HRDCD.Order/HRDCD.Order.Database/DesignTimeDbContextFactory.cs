@@ -1,7 +1,6 @@
 ﻿namespace HRDCD.Order.Database;
 
 using DataModel;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
@@ -13,7 +12,6 @@ using Microsoft.Extensions.Configuration;
 public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<OrderDbContext>
 // ReSharper restore UnusedType.Global
 {
-    /// <inheritdoc/>
     public OrderDbContext CreateDbContext(string[] args)
     {
         var configuration = new ConfigurationBuilder()
@@ -21,7 +19,8 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<OrderDbCon
             .AddJsonFile(@Directory.GetCurrentDirectory() + "/../HRDCD.Order.Api/appsettings.json")
             .Build();
         var builder = new DbContextOptionsBuilder<OrderDbContext>();
-        builder.UseNpgsql(configuration.GetConnectionString("Database"), _ => _.MigrationsAssembly("HRDCD.Order.Database"));
+        builder.UseNpgsql(configuration.GetConnectionString("Database"),
+            _ => _.MigrationsAssembly("HRDCD.Order.Database"));
 
         return new OrderDbContext(builder.Options);
     }

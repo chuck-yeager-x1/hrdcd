@@ -1,7 +1,9 @@
-﻿using Autofac;
+﻿namespace HRDCD.Order.Sender;
+
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using HRDCD.Common.Tasks.Handlers;
-using HRDCD.Order.DataModel;
+using DataModel;
 using HRDCD.Order.Tasks.DTO.Order;
 using HRDCD.Order.Tasks.Handlers.Order;
 using MassTransit;
@@ -9,8 +11,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
-namespace HRDCD.Order.Sender;
 
 class Program
 {
@@ -53,7 +53,6 @@ class Program
                 builder.RegisterType<OrderMarkAsSentTaskHandler>().As<ITaskHandler<long, OrderSelectTaskResult>>().SingleInstance();
                 
                 builder.RegisterType<MessageSender>().As<IMessageSender>().SingleInstance();
-
                 builder.RegisterType<Worker>().As<IHostedService>().SingleInstance();
             })
             .ConfigureServices((hostContext, services) =>

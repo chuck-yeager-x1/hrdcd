@@ -1,8 +1,8 @@
-﻿using Autofac;
-using HRDCD.Order.DataModel;
-using Microsoft.EntityFrameworkCore;
+﻿namespace HRDCD.Order.Api;
 
-namespace HRDCD.Order.Api;
+using Autofac;
+using DataModel;
+using Microsoft.EntityFrameworkCore;
 
 public class Startup
 {
@@ -12,37 +12,19 @@ public class Startup
         this.Environment = environment;
     }
 
-    /// <summary>
-    /// Gets the configuration settings for the application.
-    /// This property is used to retrieve various configuration values
-    /// from the application's configuration files, such as appsettings.json or environment variables.
-    /// </summary>
     public IConfiguration Configuration { get; }
 
-    /// <summary>
-    /// Gets the hosting environment for the application.
-    /// This property provides information about the web hosting environment
-    /// in which the application is running, such as Development, Staging, or Production.
-    /// </summary>
     public IWebHostEnvironment Environment { get; }
 
-    /// <summary>
-    /// <inheritdoc cref=""/>
-    /// </summary>
-    /// <param name="builder"><inheritdoc cref=""/>111.</param>
     public void ConfigureContainer(ContainerBuilder builder)
     {
         builder.RegisterModule(new AutofacModule());
     }
 
-    /// <summary>
-    /// <inheritdoc cref=""/>
-    /// </summary>
-    /// <param name="services"><inheritdoc cref=""/>123.</param>
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddDbContext<OrderDbContext>(
-            opts => { opts.UseNpgsql(this.Configuration.GetConnectionString("Database")); }, ServiceLifetime.Scoped);
+            opts => { opts.UseNpgsql(this.Configuration.GetConnectionString("Database")); });
 
         services.AddHttpContextAccessor();
         services.AddRouting(opts => { opts.LowercaseUrls = true; });
@@ -57,10 +39,6 @@ public class Startup
         // services.AddAutoMapper(typeof(MappingProfile));
     }
 
-    /// <summary>
-    /// <inheritdoc cref=""/>
-    /// </summary>
-    /// <param name="app"><inheritdoc cref=""/>456.</param>
     public void Configure(IApplicationBuilder app)
     {
         if (this.Environment.IsDevelopment())

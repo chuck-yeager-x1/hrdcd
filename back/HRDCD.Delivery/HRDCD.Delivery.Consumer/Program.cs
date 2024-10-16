@@ -1,17 +1,17 @@
-﻿using Autofac;
+﻿namespace HRDCD.Delivery.Consumer;
+
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using HRDCD.Common.Tasks.Handlers;
-using HRDCD.Delivery.DataModel;
+using DataModel;
 using HRDCD.Delivery.Tasks.DTO.Delivery;
-using HRDCD.Delivery.Tasks.DTO.Order;
-using HRDCD.Delivery.Tasks.Handlers.Order;
+using Tasks.DTO.Order;
+using Tasks.Handlers.Order;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
-namespace HRDCD.Delivery.Consumer;
 
 class Program
 {
@@ -22,18 +22,15 @@ class Program
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
         var config = configurationBuilder.Build();
         var connectionString = config.GetConnectionString("Database");
-        
+
         var queueSection = config.GetSection("QueueSettings");
         var queueSettings = queueSection.Get<QueueSettings>();
-        
+
         var orderProcessingSection = config.GetSection("OrderProcessingSettings");
-        
+
         var serviceCollection = new ServiceCollection();
-        serviceCollection.AddDbContext<DeliveryDbContext>(options =>
-        {
-            options.UseNpgsql(connectionString);
-        });
-        
+        serviceCollection.AddDbContext<DeliveryDbContext>(options => { options.UseNpgsql(connectionString); });
+
         var host = Host.CreateDefaultBuilder(args)
             .UseServiceProviderFactory(new AutofacServiceProviderFactory())
             .ConfigureContainer<ContainerBuilder>(builder =>
@@ -43,12 +40,12 @@ class Program
                 builder.RegisterType<OrderCreateTaskHandler>()
                     .As<ITaskHandler<OrderCreateParam, OrderSelectTaskResult>>();
                 builder.RegisterType<OrderStartDeliveryTaskHandler>()
-                    .As<ITaskHandler<long, DeliverySelectTaskResult>>();
+                    .As<ITaskHandler<long, DeliveryStartTaskResult>>();
             })
             .ConfigureServices((hostContext, services) =>
             {
                 services.Configure<OrderProcessingSettings>(orderProcessingSection);
-                
+
                 services.AddMassTransit(x =>
                 {
                     x.AddConsumer<MessageConsumer>();
@@ -61,15 +58,13 @@ class Program
                             h.Password(queueSettings.Password);
                         });
 
-                        cfg.ReceiveEndpoint(queueSettings.QueueName, e =>
-                        {
-                            e.ConfigureConsumer<MessageConsumer>(context);
-                        });
+                        cfg.ReceiveEndpoint(queueSettings.QueueName,
+                            e => { e.ConfigureConsumer<MessageConsumer>(context); });
                     });
                 });
             })
             .Build();
-        
+
         await host.RunAsync();
     }
 }

@@ -1,9 +1,12 @@
-﻿using HRDCD.Common.Tasks.Handlers;
-using HRDCD.Order.DataModel;
+﻿namespace HRDCD.Order.Tasks.Handlers.Order;
+
+using HRDCD.Common.Tasks.Handlers;
+using DataModel;
 using HRDCD.Order.Tasks.DTO.Order;
 
-namespace HRDCD.Order.Tasks.Handlers.Order;
-
+/// <summary>
+/// Обработчик задач по созданию заказа и сохранению его в БД.
+/// </summary>
 public class OrderCreateTaskHandler : ITaskHandler<OrderCreateParam, OrderCreateTaskResult>
 {
     private readonly OrderDbContext _orderDbContext;
@@ -13,6 +16,12 @@ public class OrderCreateTaskHandler : ITaskHandler<OrderCreateParam, OrderCreate
         _orderDbContext = orderDbContext ?? throw new ArgumentNullException(nameof(orderDbContext));
     }
 
+    /// <summary>
+    /// Метод для создания заказа и сохранения его в БД.
+    /// </summary>
+    /// <param name="argument">Входящий аргумент с данными для формирования заказа.</param>
+    /// <param name="cancellationToken">Запрос на отмену операции.</param>
+    /// <returns>Объект, содержащий осинхронную операцию.</returns>
     public async Task<OrderCreateTaskResult> HandleTaskAsync(OrderCreateParam argument,
         CancellationToken cancellationToken)
     {
@@ -34,8 +43,8 @@ public class OrderCreateTaskHandler : ITaskHandler<OrderCreateParam, OrderCreate
         {
             Result = new OrderResultValue
             {
-                Id = order.Id, 
-                OrderName = order.OrderName, 
+                Id = order.Id,
+                OrderName = order.OrderName,
                 OrderNumber = order.OrderNumber,
                 OrderDescription = order.OrderDescription,
                 IsSent = order.IsSent

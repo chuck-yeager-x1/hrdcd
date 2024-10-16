@@ -1,10 +1,13 @@
-﻿using HRDCD.Common.Tasks.Handlers;
-using HRDCD.Order.DataModel;
+﻿namespace HRDCD.Order.Tasks.Handlers.Order;
+
+using HRDCD.Common.Tasks.Handlers;
+using DataModel;
 using HRDCD.Order.Tasks.DTO.Order;
 using Microsoft.EntityFrameworkCore;
 
-namespace HRDCD.Order.Tasks.Handlers.Order;
-
+/// <summary>
+/// Обработчик задач по получению списка заказов, не отправленных в очередь сообщений.
+/// </summary>
 public class OrderSelectFirstUnsentTaskHandler : ITaskHandler<int, OrderSelectUnsentTaskResult>
 {
     private readonly OrderDbContext _orderDbContext;
@@ -14,6 +17,12 @@ public class OrderSelectFirstUnsentTaskHandler : ITaskHandler<int, OrderSelectUn
         _orderDbContext = orderDbContext ?? throw new ArgumentNullException(nameof(orderDbContext));
     }
 
+    /// <summary>
+    /// Метод для получения списка заказов, не отправленных в очередь сообщений.
+    /// </summary>
+    /// <param name="argument">Количество запрашиваемых элементов.</param>
+    /// <param name="cancellationToken">Запрос на отмену операции.</param>
+    /// <returns>Объект, содержащий асинхронную операцию.</returns>
     public async Task<OrderSelectUnsentTaskResult> HandleTaskAsync(int argument, CancellationToken cancellationToken)
     {
         var orders = _orderDbContext.Set<DataModel.Entity.OrderEntity>()

@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HRDCD.Delivery.Tasks.Handlers.Order;
 
+/// <summary>
+/// Обработчик задач по получению списка заказов в постраничном режиме.
+/// </summary>
 public class OrderSelectTaskHandler : ITaskHandler<OrderSelectParam, OrderSelectTaskMultipleResult>
 {
     private readonly DeliveryDbContext _deliveryDbContext;
@@ -14,6 +17,12 @@ public class OrderSelectTaskHandler : ITaskHandler<OrderSelectParam, OrderSelect
         _deliveryDbContext = deliveryDbContext ?? throw new ArgumentNullException(nameof(deliveryDbContext));
     }
 
+    /// <summary>
+    /// Метод для получения списка заказов в постраничном режиме.
+    /// </summary>
+    /// <param name="argument">Входящий аргумент с параметрами постраничной выборки.</param>
+    /// <param name="cancellationToken">Запрос на отмену операции.</param>
+    /// <returns>Объект, содержащий асинхронную операцию.</returns>
     public async Task<OrderSelectTaskMultipleResult> HandleTaskAsync(OrderSelectParam argument, CancellationToken cancellationToken)
     {
         var startIndex = (argument.PageNumber - 1) * argument.PageSize;

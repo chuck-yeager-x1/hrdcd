@@ -1,12 +1,14 @@
 ﻿using HRDCD.Common.Tasks.Handlers;
 using HRDCD.Delivery.DataModel;
-using HRDCD.Delivery.Tasks.DTO;
 using HRDCD.Delivery.Tasks.DTO.Delivery;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace HRDCD.Delivery.Tasks.Handlers.Delivery;
 
+/// <summary>
+/// Обработчик задач по получению списка заявок на доставку в постраничном режиме.
+/// </summary>
 public class DeliverySelectTaskHandler : ITaskHandler<DeliverySelectParam, DeliverySelectTaskMultipleResult>
 {
     private readonly ILogger<DeliverySelectTaskHandler> _logger;
@@ -18,6 +20,12 @@ public class DeliverySelectTaskHandler : ITaskHandler<DeliverySelectParam, Deliv
         _deliveryDbContext = deliveryDbContext ?? throw new ArgumentNullException(nameof(deliveryDbContext));
     }
 
+    /// <summary>
+    /// Метод для получения списка заявок на доставку в постраничном режиме.
+    /// </summary>
+    /// <param name="argument">Входящий аргумент с параметрами постраничной выборки.</param>
+    /// <param name="cancellationToken">Запрос на отмену операции.</param>
+    /// <returns>Объект, содержащий асинхронную операцию.</returns>
     public async Task<DeliverySelectTaskMultipleResult> HandleTaskAsync(DeliverySelectParam argument, CancellationToken cancellationToken)
     {
         var startIndex = (argument.PageNumber - 1) * argument.PageSize;

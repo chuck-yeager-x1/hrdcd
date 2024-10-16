@@ -1,23 +1,22 @@
-﻿using HRDCD.Delivery.DataModel.Configuration;
-using HRDCD.Delivery.DataModel.Entity;
-using Microsoft.EntityFrameworkCore;
+﻿namespace HRDCD.Delivery.DataModel;
 
-namespace HRDCD.Delivery.DataModel;
+using Configuration;
+using Entity;
+using Microsoft.EntityFrameworkCore;
 
 public class DeliveryDbContext : DbContext
 {
-    private readonly string _connectionString;
+    private readonly string? _connectionString;
 
-    protected DeliveryDbContext(string connectionString) => _connectionString = connectionString;
+    protected DeliveryDbContext(string? connectionString) => _connectionString = connectionString;
 
     public DeliveryDbContext(DbContextOptions options) : base(options)
     {
     }
-    
+
     public DbSet<DeliveryEntity> Deliveries { get; set; }
     public DbSet<OrderEntity> Orders { get; set; }
-    
-    /// <inheritdoc/>
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
@@ -26,7 +25,6 @@ public class DeliveryDbContext : DbContext
         }
     }
 
-    /// <inheritdoc/>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new OrderConfig());

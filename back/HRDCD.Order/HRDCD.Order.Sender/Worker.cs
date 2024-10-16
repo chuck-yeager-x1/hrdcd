@@ -1,27 +1,32 @@
-﻿using HRDCD.Common.Tasks.Handlers;
+﻿namespace HRDCD.Order.Sender;
+
+using HRDCD.Common.Tasks.Handlers;
 using HRDCD.Order.Tasks.DTO.Order;
 using Microsoft.Extensions.Hosting;
-
-namespace HRDCD.Order.Sender;
 
 public class Worker : IHostedService
 {
     private readonly IMessageSender _messageSender;
-    private Timer _timer;
     private readonly ITaskHandler<int, OrderSelectUnsentTaskResult> _orderSelectUnsentTaskHandler;
     private readonly ITaskHandler<long, OrderSelectTaskResult> _orderMarkAsSentTaskHandler;
+    
+    private Timer _timer;
 
-    public Worker(IMessageSender messageSender, ITaskHandler<int, OrderSelectUnsentTaskResult> orderSelectUnsentTaskHandler, ITaskHandler<long, OrderSelectTaskResult> orderMarkAsSentTaskHandler)
+    public Worker(IMessageSender messageSender,
+        ITaskHandler<int, OrderSelectUnsentTaskResult> orderSelectUnsentTaskHandler,
+        ITaskHandler<long, OrderSelectTaskResult> orderMarkAsSentTaskHandler)
     {
         _messageSender = messageSender ?? throw new ArgumentNullException(nameof(messageSender));
-        _orderSelectUnsentTaskHandler = orderSelectUnsentTaskHandler ?? throw new ArgumentNullException(nameof(orderSelectUnsentTaskHandler));
-        _orderMarkAsSentTaskHandler = orderMarkAsSentTaskHandler ?? throw new ArgumentNullException(nameof(orderMarkAsSentTaskHandler));
+        _orderSelectUnsentTaskHandler = orderSelectUnsentTaskHandler ??
+                                        throw new ArgumentNullException(nameof(orderSelectUnsentTaskHandler));
+        _orderMarkAsSentTaskHandler = orderMarkAsSentTaskHandler ??
+                                      throw new ArgumentNullException(nameof(orderMarkAsSentTaskHandler));
     }
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
         _timer = new Timer(SendMessages, null, TimeSpan.Zero, TimeSpan.FromSeconds(10));
-        
+
         return Task.CompletedTask;
     }
 
@@ -31,9 +36,16 @@ public class Worker : IHostedService
         return Task.CompletedTask;
     }
 
+    /// <summary>
+    /// Выполняемый по таймеру метод, отправляющий данные о заказах в очередь сообщений.
+    /// </summary>
+    /// <param name="state"></param>
     private async void SendMessages(object state)
     {
+        // получаем определенное количество необработанных сообщений (т.е. не отправленных в очередь)
         var portion = await _orderSelectUnsentTaskHandler.HandleTaskAsync(1, CancellationToken.None);
+        
+        // каждое сообщение отправляем в очередь и помечаем для него в БД факт отправки.
         foreach (var orderResultValue in portion.Results.ToList())
         {
             try

@@ -11,24 +11,10 @@ public class Startup
         this.Environment = environment;
     }
 
-    /// <summary>
-    /// Gets the configuration settings for the application.
-    /// This property is used to retrieve various configuration values
-    /// from the application's configuration files, such as appsettings.json or environment variables.
-    /// </summary>
     public IConfiguration Configuration { get; }
 
-    /// <summary>
-    /// Gets the hosting environment for the application.
-    /// This property provides information about the web hosting environment
-    /// in which the application is running, such as Development, Staging, or Production.
-    /// </summary>
     public IWebHostEnvironment Environment { get; }
 
-    /// <summary>
-    /// <inheritdoc cref=""/>
-    /// </summary>
-    /// <param name="services"><inheritdoc cref=""/>123.</param>
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddHttpContextAccessor();
@@ -40,16 +26,12 @@ public class Startup
         services.AddSwaggerGen();
 
         services.AddCors();
-        
+
         services.AddOcelot(Configuration);
 
         // services.AddAutoMapper(typeof(MappingProfile));
     }
 
-    /// <summary>
-    /// <inheritdoc cref=""/>
-    /// </summary>
-    /// <param name="app"><inheritdoc cref=""/>456.</param>
     public void Configure(IApplicationBuilder app)
     {
         if (this.Environment.IsDevelopment())

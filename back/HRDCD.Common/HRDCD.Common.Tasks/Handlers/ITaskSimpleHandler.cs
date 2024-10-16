@@ -1,17 +1,17 @@
 ﻿namespace HRDCD.Common.Tasks.Handlers;
 
 /// <summary>
-/// Обобщенный интерфейс обработки заданий.
+/// Интерфейс обработчика заданий.
 /// </summary>
-/// <typeparam name="TArgument">Входящий аргумент.</typeparam>
-/// <typeparam name="TResult">Результат выполнения.</typeparam>
+/// <typeparam name="TArgument">Тип входящего аргумента.</typeparam>
+/// <typeparam name="TResult">Тип результата выполнения операции.</typeparam>
 public interface ITaskHandler<in TArgument, TResult>
 {
     /// <summary>
     /// Асинхронный метод для выполнения обработки заданий.
     /// </summary>
-    /// <param name="argument">Аргумент.</param>
-    /// <param name="cancellationToken">Токен.</param>
-    /// <returns>Результат.</returns>
+    /// <param name="argument">Входящий аргумент.</param>
+    /// <param name="cancellationToken">Запрос на отмену операции.</param>
+    /// <returns>Результат выполнения операции.</returns>
     Task<TResult> HandleTaskAsync(TArgument argument, CancellationToken cancellationToken);
 }

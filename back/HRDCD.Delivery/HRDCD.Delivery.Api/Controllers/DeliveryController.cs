@@ -1,11 +1,9 @@
-﻿using System.Net.Mime;
+﻿namespace HRDCD.Delivery.Api.Controllers;
+
+using System.Net.Mime;
 using HRDCD.Common.Tasks.Handlers;
-using HRDCD.Delivery.DataModel.Entity;
-using HRDCD.Delivery.Tasks.DTO;
 using HRDCD.Delivery.Tasks.DTO.Delivery;
 using Microsoft.AspNetCore.Mvc;
-
-namespace HRDCD.Delivery.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -19,11 +17,13 @@ public class DeliveryController : ControllerBase
     public DeliveryController(
         ITaskHandler<long, DeliverySelectTaskResult> deliverySelectSingleTaskHandler,
         ITaskHandler<DeliverySelectParam, DeliverySelectTaskMultipleResult> deliverySelectTaskHandler,
-        ILogger<DeliveryController> logger, 
+        ILogger<DeliveryController> logger,
         ITaskHandler<DeliveryChangeStatusParam, DeliverySelectTaskResult> deliveryChangeStatusTaskHandler)
     {
-        _deliverySelectSingleTaskHandler = deliverySelectSingleTaskHandler ?? throw new ArgumentNullException(nameof(deliverySelectSingleTaskHandler));
-        _deliverySelectTaskHandler = deliverySelectTaskHandler ?? throw new ArgumentNullException(nameof(deliverySelectTaskHandler));
+        _deliverySelectSingleTaskHandler = deliverySelectSingleTaskHandler ??
+                                           throw new ArgumentNullException(nameof(deliverySelectSingleTaskHandler));
+        _deliverySelectTaskHandler = deliverySelectTaskHandler ??
+                                     throw new ArgumentNullException(nameof(deliverySelectTaskHandler));
         _logger = logger;
         _deliveryChangeStatusTaskHandler = deliveryChangeStatusTaskHandler ??
                                            throw new ArgumentNullException(nameof(deliveryChangeStatusTaskHandler));
@@ -31,7 +31,6 @@ public class DeliveryController : ControllerBase
 
     [HttpGet]
     [Route("select/{deliveryId}")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DeliverySelectTaskResult))]
     [Produces(MediaTypeNames.Application.Json)]
     public async Task<DeliverySelectTaskResult> GetDeliveryAsync(long deliveryId, CancellationToken cancellationToken)
     {
@@ -40,7 +39,9 @@ public class DeliveryController : ControllerBase
 
     [HttpGet]
     [Route("select")]
-    public async Task<DeliverySelectTaskMultipleResult> GetDeliveriesAsync([FromQuery]DeliverySelectParam deliverySelectParam,
+    [Produces(MediaTypeNames.Application.Json)]
+    public async Task<DeliverySelectTaskMultipleResult> GetDeliveriesAsync(
+        [FromQuery] DeliverySelectParam deliverySelectParam,
         CancellationToken cancellationToken)
     {
         return await _deliverySelectTaskHandler.HandleTaskAsync(deliverySelectParam, cancellationToken);
@@ -48,6 +49,7 @@ public class DeliveryController : ControllerBase
 
     [HttpPut]
     [Route("change-status")]
+    [Produces(MediaTypeNames.Application.Json)]
     public async Task<DeliverySelectTaskResult> ChangeStatusAsync(DeliveryChangeStatusParam param,
         CancellationToken cancellationToken)
     {

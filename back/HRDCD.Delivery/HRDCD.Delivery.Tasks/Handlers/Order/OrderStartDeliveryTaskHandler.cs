@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HRDCD.Delivery.Tasks.Handlers.Order;
 
+/// <summary>
+/// Обработчик задач по созданию заявок на доставку.
+/// </summary>
 public class OrderStartDeliveryTaskHandler : ITaskHandler<long, DeliveryStartTaskResult>
 {
     private readonly DeliveryDbContext _deliveryDbContext;
@@ -16,6 +19,12 @@ public class OrderStartDeliveryTaskHandler : ITaskHandler<long, DeliveryStartTas
         _deliveryDbContext = deliveryDbContext ?? throw new ArgumentNullException(nameof(deliveryDbContext));
     }
 
+    /// <summary>
+    /// Метод для создания заявки на доставку.
+    /// </summary>
+    /// <param name="argument">Первичный ключ записи о заказе в БД, для которой нужно создать заявку на доставку.</param>
+    /// <param name="cancellationToken">Запрос на отмену операции.</param>
+    /// <returns>Объект, содержащий асинхронную операцию.</returns>
     public async Task<DeliveryStartTaskResult> HandleTaskAsync(long argument, CancellationToken cancellationToken)
     {
         var order = await _deliveryDbContext.Set<OrderEntity>()
@@ -23,12 +32,13 @@ public class OrderStartDeliveryTaskHandler : ITaskHandler<long, DeliveryStartTas
             .Where(_ => _.IsDeleted == false)
             .SingleOrDefaultAsync(_ => _.Id == argument, cancellationToken);
 
+        // если у заказа есть связанные заявки на доставку, то возвращаем ошибку и завершаем выполнение.
         if (order.DeliveryEntities.Any())
         {
             return new DeliveryStartTaskResult
             {
                 IsSuccess = false,
-                Message = "По данному заказу уже начата процедура доставки"
+                ErrorMessage = "По данному заказу уже начата процедура доставки"
             };
         }
 

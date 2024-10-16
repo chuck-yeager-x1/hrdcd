@@ -6,6 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HRDCD.Delivery.Tasks.Handlers.Delivery;
 
+/// <summary>
+/// Обработчик задач по смене статуса заявки на доставку.
+/// </summary>
 public class DeliveryChangeStatusTaskHandler : ITaskHandler<DeliveryChangeStatusParam, DeliverySelectTaskResult>
 {
     private readonly DeliveryDbContext _deliveryDbContext;
@@ -15,6 +18,12 @@ public class DeliveryChangeStatusTaskHandler : ITaskHandler<DeliveryChangeStatus
         _deliveryDbContext = deliveryDbContext ?? throw new ArgumentNullException(nameof(deliveryDbContext));
     }
 
+    /// <summary>
+    /// Метод для изменения статуса заявки на доставку.
+    /// </summary>
+    /// <param name="param">Входной параметр с данными для смены статуса.</param>
+    /// <param name="cancellationToken">Запрос на отмену операции.</param>
+    /// <returns>Объект, содержащий асинхронную операцию.</returns>
     public async Task<DeliverySelectTaskResult> HandleTaskAsync(DeliveryChangeStatusParam param, CancellationToken cancellationToken)
     {
         var delivery = await _deliveryDbContext.Set<DeliveryEntity>()

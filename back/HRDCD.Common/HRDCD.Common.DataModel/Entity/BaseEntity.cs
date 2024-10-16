@@ -1,5 +1,8 @@
 ﻿namespace HRDCD.Common.DataModel.Entity;
 
+/// <summary>
+/// Класс для наследования базовых полей сущности, хранимой в БД.
+/// </summary>
 public class BaseEntity
 {
     /// <summary>

@@ -1,8 +1,8 @@
-﻿using HRDCD.Delivery.DataModel.Entity;
+﻿namespace HRDCD.Delivery.DataModel.Configuration;
+
+using Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace HRDCD.Delivery.DataModel.Configuration;
 
 public class DeliveryConfig : IEntityTypeConfiguration<DeliveryEntity>
 {

@@ -1,11 +1,11 @@
-﻿using Autofac;
+﻿namespace HRDCD.Delivery.Api;
+
+using Autofac;
 using HRDCD.Common.Tasks.Handlers;
 using HRDCD.Delivery.Tasks.DTO.Delivery;
-using HRDCD.Delivery.Tasks.DTO.Order;
+using Tasks.DTO.Order;
 using HRDCD.Delivery.Tasks.Handlers.Delivery;
-using HRDCD.Delivery.Tasks.Handlers.Order;
-
-namespace HRDCD.Delivery.Api;
+using Tasks.Handlers.Order;
 
 public class AutofacModule : Module
 {
