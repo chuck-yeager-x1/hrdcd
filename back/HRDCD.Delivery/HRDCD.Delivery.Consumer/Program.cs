@@ -46,11 +46,11 @@ class Program
             {
                 services.Configure<OrderProcessingSettings>(orderProcessingSection);
 
-                services.AddMassTransit(x =>
+                services.AddMassTransit(configurator =>
                 {
-                    x.AddConsumer<MessageConsumer>();
+                    configurator.AddConsumer<MessageConsumer>();
 
-                    x.UsingRabbitMq((context, cfg) =>
+                    configurator.UsingRabbitMq((context, cfg) =>
                     {
                         cfg.Host(queueSettings.Hostname, h =>
                         {
