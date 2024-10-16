@@ -27,3 +27,5 @@
 /back/HRDCD.Delivery/HRDCD.Delivery.Consumer/bin
 /back/HRDCD.Order/HRDCD.Order.Sender/obj
 /back/HRDCD.Order/HRDCD.Order.Sender/bin
+/back/HRDCD.Gateway/HRDCD.Gateway.Ocelot/obj
+/back/HRDCD.Gateway/HRDCD.Gateway.Ocelot/bin

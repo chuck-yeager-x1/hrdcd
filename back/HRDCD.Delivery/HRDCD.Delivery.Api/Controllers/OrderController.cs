@@ -41,7 +41,7 @@ public class OrderController : ControllerBase
 
     [HttpPost]
     [Route("create-delivery")]
-    public async Task<DeliveryStartTaskResult> CreateDeliveryAsync(int orderId, CancellationToken cancellationToken)
+    public async Task<DeliveryStartTaskResult> CreateDeliveryAsync([FromQuery]int orderId, CancellationToken cancellationToken)
     {
         return await _orderStartDeliveryTaskHandler.HandleTaskAsync(orderId, cancellationToken);
     }

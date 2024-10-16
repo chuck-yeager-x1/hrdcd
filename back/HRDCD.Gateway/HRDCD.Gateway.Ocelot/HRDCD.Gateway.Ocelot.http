@@ -1,0 +1,6 @@
+@HRDCD.Gateway.Ocelot_HostAddress = http://localhost:5082
+
+GET {{HRDCD.Gateway.Ocelot_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

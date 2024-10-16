@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDCD.Gateway.Ocelot", "HRDCD.Gateway.Ocelot\HRDCD.Gateway.Ocelot.csproj", "{C5F8DB2D-09C7-49CB-AA67-0C0A1A109DDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5F8DB2D-09C7-49CB-AA67-0C0A1A109DDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5F8DB2D-09C7-49CB-AA67-0C0A1A109DDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5F8DB2D-09C7-49CB-AA67-0C0A1A109DDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5F8DB2D-09C7-49CB-AA67-0C0A1A109DDB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
